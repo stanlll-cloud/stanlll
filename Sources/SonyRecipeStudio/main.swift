@@ -410,11 +410,12 @@ struct ContentView: View {
             }
             .overlay {
                 if model.cameraRecipes.isEmpty {
-                    ContentUnavailableView(
-                        model.isConnected ? "相机里暂无配方" : "尚未连接相机",
-                        systemImage: "camera",
-                        description: Text(model.isConnected ? "可以把本地配方写入相机。" : "按上方步骤连接 Sony 相机。")
-                    )
+                    VStack(spacing: 10) {
+                            Image(systemName: "camera").font(.system(size: 34)).foregroundStyle(.secondary)
+                            Text(model.isConnected ? "相机里暂无配方" : "尚未连接相机").font(.headline)
+                            Text(model.isConnected ? "可以把本地配方写入相机。" : "按上方步骤连接 Sony 相机。")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
                 }
             }
 
@@ -449,11 +450,12 @@ struct ContentView: View {
             }
             .overlay {
                 if model.localRecipes.isEmpty {
-                    ContentUnavailableView(
-                        "本地配方库为空",
-                        systemImage: "square.and.arrow.down",
-                        description: Text("可以从相机下载、导入 YML，或者新建一个配方。")
-                    )
+                    VStack(spacing: 10) {
+                            Image(systemName: "square.and.arrow.down").font(.system(size: 34)).foregroundStyle(.secondary)
+                            Text("本地配方库为空").font(.headline)
+                            Text("可以从相机下载、导入 YML，或者新建一个配方。")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
                 }
             }
 
