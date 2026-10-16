@@ -1,0 +1,20 @@
+name: Build macOS
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make build script executable
+        run: chmod +x build_mac.sh
+      - name: Build app and DMG
+        run: ./build_mac.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SonyRecipeStudio-macOS
+          path: |
+            dist/SonyRecipeStudio-macOS.dmg
+            dist/Sony Recipe Studio.app
